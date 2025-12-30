@@ -14,22 +14,33 @@ This project explores the numerical reconstruction of the Maxwell-Boltzmann prob
   </tr>
 </table>
 
+
+
 ## Tabel of Contents
 1. [Project Overview](#numerical-reconstruction-of-the-maxwell-boltzmann-distribution-via-3D-monatomic-hard-sphere-simulation)
 2. [Theoretical Background](#theoretical-background)
 3. [Methodology](#methodology)
 4. [Results](#results)
 5. [Installation & Usage](#installation--usage)
-6. [AI Use Declaration](#ai-use-declaration)
+6. [Acknowledgements & Resources](#acknowledgements--resources)
+7. [AI Use Declaration](#ai-use-declaration)
+
+
 
 ## Theoretical Background
 in process ...
 
+
+
 ## Methodology
 in process ...
 
+
+
 ## Results
 in process ...
+
+
 
 ## Installation & Usage
 
@@ -98,6 +109,17 @@ Once the browser window opens, you can navigate the 3D space using these trackpa
 | **Pan (Move)** | Hold **Shift** + Click & Drag | -- |
 
 Note: For more details on camera control, refer to the official [VPython Documentation](https://www.glowscript.org/docs/VPythonDocs/index.html#).
+
+
+
+## Acknowledgements & Resources
+This project was inspired by serveral excellent resources. Special thanks to the following creators, authors for their high quality educational content:
+* **Physics for Scientists and Engineers (Serway & Jewett)** - Primary reference for the Kinetic Theory of Gases and Maxwell-Boltzmann derivation.
+* **[Numerical Methods for Engineers](https://youtube.com/playlist?list=PLkZjai-2Jcxn35XnijUtqqEg0Wi5Sn8ab&si=NUFmcl7sFmRZM9Wr)** by *Prof. Jeffrey Chasnov* - Provided the concept of numerical matrix operation and cubic spline interpolation.
+* **[EGME206 Numerical Methods for Engineers, Spring 2021](https://youtube.com/playlist?list=PLLM1AZpDbYI1HPhHWmA-_5YqF26Rnt9ZM&si=xaMQ15EgJC063XTu)** by *Prof. Ittichote Chuckpaiwong* - In-dept explanation in the topic of Regressions.
+* **[VPython for Beginners](https://youtube.com/playlist?list=PLdCdV2GBGyXOnMaPS1BgO7IOU_00ApuMo&si=8MC25WVnnu3wRcem)** by *Let's Code Physics* - Introduce the usage of `VPython` for 3D simulation.
+
+
 
 ## AI Use Declaration
 This project utilized AI tools to assits in the development process and text refinement.
