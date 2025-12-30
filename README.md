@@ -3,13 +3,13 @@ This project explores the numerical reconstruction of the Maxwell-Boltzmann prob
 <table>
   <tr>
     <td width="40%" align="center" valign="middle">
-      <img src="assets/forREADME/03_dynamicPDFKDESimulation.gif" width="100%" />
+      <img src="assets/forProjectOverview/03_dynamicPDFKDESimulation.gif" width="100%" />
     </td>
     <td width="20%" align="center" valign="middle">
-      <img src="assets/forREADME/06_3DParticlesSimulation.gif" width="100%" />
+      <img src="assets/forProjectOverview/06_3DParticlesSimulation.gif" width="100%" />
     </td>
     <td width="40%" align="center" valign="middle">
-      <img src="assets/forREADME/04_GenericFunctionCurveFitted.png" width="100%" />
+      <img src="assets/forProjectOverview/04_GenericFunctionCurveFitted.png" width="100%" />
     </td>
   </tr>
 </table>
