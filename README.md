@@ -100,4 +100,8 @@ Once the browser window opens, you can navigate the 3D space using these trackpa
 Note: For more details on camera control, refer to the official [VPython Documentation](https://www.glowscript.org/docs/VPythonDocs/index.html#).
 
 ## AI Use Declaration
-in process ...
+This project utilized AI tools to assits in the development process and text refinement.
+* **GitHub Copilot:** Used for code autocompletion, debugging scripts, and snipped generation.
+* **Google Gemini:** Used for drafting the initial structure of this README file, text refinement, and documentation formatting.
+
+All scientific logic, mathematical derivations, and final code implementation were verified and reviewed by me.
