@@ -129,11 +129,14 @@ $$ \vec{v}_{1, f} = \vec{v}_{1, \perp, i} + \vec{v}_{1, \parallel, f} $$
 $$ \vec{v}_{1, f} = (\vec{v}_{1, i} - \vec{v}_{1, \parallel, i})+\vec{v}_{2, \parallel} $$
 $$ \vec{v}_{1, f} = \vec{v}_{1, i} - (\vec{v}_{1, \parallel, i} - \vec{v}_{2, \parallel}) $$
 
+
 * Substitute Unit Vectors:
 
 $$ \vec{v}_{1, f} = \vec{v}_{1, i} - ((\vec{v}_{1, i} \cdot \hat{c})\hat{c} - (\vec{v}_{2, i} \cdot \hat{c})\hat{c}) $$
 $$ \vec{v}_{1, f} = (\vec{v}_{1, i} - ((\vec{v}_{1, i} - \vec{v}_{2, i}) \cdot \hat{c})) \hat{c} $$
+
 * Substitute $\hat{c}$ back, and repeat for $\vec{v}_{2, f}$:
+
 $$\vec{v}_{1, f} = \vec{v}_{1, i} - \frac{(\vec{v}_{1, i}-\vec{v}_{2, i}) \cdot (\vec{r}_{1, i}-\vec{r}_{2, i})}{\lVert \vec{r}_{1, i}-\vec{r}_{2, i} \rVert^2} (\vec{r}_{1, i}-\vec{r}_{2, i})$$
 $$\vec{v}_{2, f} = \vec{v}_{2, i} - \frac{(\vec{v}_{2, i}-\vec{v}_{1, i}) \cdot (\vec{r}_{2, i}-\vec{r}_{1, i})}{\lVert \vec{r}_{2, i}-\vec{r}_{1, i} \rVert^2} (\vec{r}_{2, i}-\vec{r}_{1, i})$$
 
