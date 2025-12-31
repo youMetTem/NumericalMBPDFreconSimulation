@@ -31,7 +31,7 @@ This project explores the numerical reconstruction of the Maxwell-Boltzmann prob
 ## Theoretical Background
 
 ### The Maxwell-Boltzmann Distribution
-For an ideal gas at thermodynamic equilibrium, the speeds of particles are not unitform. Instead, they follow a specific probability distribution known as *Maxwell-Boltzmann PDF*.
+For an ideal gas at thermodynamic equilibrium, the speeds of particles are not uniform. Instead, they follow a specific probability distribution known as *Maxwell-Boltzmann PDF*.
 
 The probability density function $f(v)$ for a particle of mass $m$ at temperature $T$ is given by:
 
@@ -56,7 +56,7 @@ I treat the system as an *Ideal Gas*. The require specific constraints on how pa
 Note: As the simulation needs to check for particle colliding, I can not assume of *Point Mass*.
 
 ### Simulation Environment
-The simulation models an ideal gas within a bouned 3D cubic container of length $L$. The simulation is initilized with $N$ spherical particles, each having mass $m$ and radius $R$ at $T$ temperature in Kelvin. ($L$, $N$, $m$, $T$, and particle element can be modified in the `main.py` file.)
+The simulation models an ideal gas within a bounded 3D cubic container of length $L$. The simulation is initialized with $N$ spherical particles, each having mass $m$ and radius $R$ at $T$ temperature in Kelvin. ($L$, $N$, $m$, $T$, and particle element can be modified in the `main.py` file.)
 #### Initialization Conditions:
 1. **Positions** ($\vec{r}$): Initialized uniformly apart from each other within the domain $(R, L, -R)$ for all dimension $(x, y, z)$. Ensuring no two particles overlapping when spawned.
 2. **Velocities** ($\vec{v}$): Initialized with random components in $(x, y, z)$ but root mean square ($v_{rms}$) of all particles are scaled to theoretical value. Directly correlate Temperature (%T%) with the simulation's environment.
@@ -111,7 +111,7 @@ At every step of evolving $dt$, the scripts checks for overlapping particle pair
 
 $$\lVert \vec{r}_{i}-\vec{r}_{j} \rVert \le 2R$$
 
-Once the collision event is triggered, the velocities are updated based on the convervation of linear momentum and kinetic energy. For two particles of equal mass, the post-collision velocities are calculated using vector projection along the line of impact.
+Once the collision event is triggered, the velocities are updated based on the conservation of linear momentum and kinetic energy. For two particles of equal mass, the post-collision velocities are calculated using vector projection along the line of impact.
 * Defining Collision Axis:
 
 $$ \hat{c} = \frac{\vec{r}_1-\vec{r}_2}{\lVert \vec{r}_1-\vec{r}_2 \rVert} $$
@@ -166,7 +166,7 @@ $$
 
 The coefficients ($a_i, b_i, c_i, d_i$) are determined by applying countinuity constraints for the function, its first and second derivative at every datapoints.
 
-Additionally, due to a known limitation of polynomial iterpolation method, including cubic spline, is **Unbounded Extrapolation**. While the spline accurately models the distribution within the sampled velocity range $[v_{min}, v_{max}]$, the polynomials inherently diverge towards $\pm \infty$ outside this domain. To counter against this issue, I resolve it by setting any prediction data outside the range of $[v_{min}, v_{max}]$ to 0 and remove any negative result probability.
+Additionally, due to a known limitation of polynomial interpolation method, including cubic spline, is **Unbounded Extrapolation**. While the spline accurately models the distribution within the sampled velocity range $[v_{min}, v_{max}]$, the polynomials inherently diverge towards $\pm \infty$ outside this domain. To counter against this issue, I resolve it by setting any prediction data outside the range of $[v_{min}, v_{max}]$ to 0 and remove any negative result probability.
 
 #### Method 2: Non-Linear Curve Fitting (Levenberg-Marquardt)
 By observation of the histogram, we could hypothesize the target model function $g(v, A, B)$ as:
@@ -203,7 +203,7 @@ Additionally, speed of each molecules is mapped into spectrum colors. With each 
 ## Results
 
 ### Quantitative Accuracy
-The accuracy of the simulation is evidenced by the negligibly low error magin observed across 10,000 sampling iterations. Provided with several numerical key metrics:
+The accuracy of the simulation is evidenced by the negligibly low error margin observed across 10,000 sampling iterations. Provided with several numerical key metrics:
 * **Max Residual Error:**
   * Cubic Spline Interpolation: $< 2.5 \times 10^{-6}$
   * Non-Linear Curve Fitting: $< 1 \times 10^{-6}$
@@ -251,10 +251,10 @@ Notable detail worth mentioning in addition to the quantitative accuracy part:
 <table>
   <tr>
     <td width="50%" align="center" valign="middle">
-      <img src="assets/forResults/05_HistogramsBinMidpointSplineInterpolatedCurve.png" width="800px alt = "Cubic Spline Interpolation PDF Curve" />
+      <img src="assets/forResults/05_HistogramsBinMidpointSplineInterpolatedCurve.png" width="800px" alt = "Cubic Spline Interpolation PDF Curve" />
     </td>
     <td width="50%" align="center" valign="middle">
-      <img src="assets/forResults/04_GenericFunctionCurveFitted.png" width="800px alt = "Levenberg-Marquardt Optimize Fit PDF Curve" />
+      <img src="assets/forResults/04_GenericFunctionCurveFitted.png" width="800px" alt = "Levenberg-Marquardt Optimize Fit PDF Curve" />
     </td>
   </tr>
 </table>
