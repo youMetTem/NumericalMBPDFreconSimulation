@@ -215,11 +215,14 @@ The accuracy of the simulation is evidenced by the negligibly low error magin ob
   * Parameter B Percentage Error: $0.078 %$
 
 ### Visual Analysis
-#### Initial Speed Distribution immediatly after spawning particles: It is noticeable that the initial distribution generated from *Mersenne Twister* has no correlation with the theoretical distribution at all.
+#### Initial Speed Distribution immediatly after spawning particles:
+It is noticeable that the initial distribution generated from *Mersenne Twister* has no correlation with the theoretical distribution at all.
 `insert initial pic`
-#### Realtime Speed Distribution: Both visualization closely capture the characteristics of the theoretical distribution, with only minor fluctuations arising from limited sample sizes and the use of an inappropriate Gaussian KDE regression.
+#### Realtime Speed Distribution:
+Both visualization closely capture the characteristics of the theoretical distribution, with only minor fluctuations arising from limited sample sizes and the use of an inappropriate Gaussian KDE regression.
 `insert two gif of realtime simulation`
-#### Finalized Reconstructed PDF: Notable detail worth mentioning in addition to the quantitative accuracy part:
+#### Finalized Reconstructed PDF:
+Notable detail worth mentioning in addition to the quantitative accuracy part:
 * Cubic Spline Residuals exhibiting tiny cone shape sinuiodal oscillation: This is most likely cause by approximating a transcendental function of exponential decay with piecewise polynomial, utlizing inappropriate interpolation method, regression model is the cause of this problem. It is also important to note that the max residual error is less than $2.5 \times 10^{-6}$
 * Curve Fitting Residuals' Systematic Drift: The residual plot for the Levenberg-Marquardt curve fit does not display random scatter but a noticeable pattern corresponds to the difference between two Maxwell-Boltzmann PDF with infinitesimally different temperature parameters, this is most likely due to finite bin width limitations rather than the physical inaccuracy in the simulation.
 `insert two pic of the end result`
