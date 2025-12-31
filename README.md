@@ -47,19 +47,51 @@ This project consists of 2 phases: the Kinematic Simulation, which generate raw 
 
 ### Physical Assumptions
 I treat the system as an *Ideal Gas*. The require specific constraints on how particles behave:
-1. *No Intermolecular Forces*: Particles do not attract or repel each other at a distance. They only interact when they physically collide (*Hard-Sphere Model*).
-2. *Random Motion*: Particles move in straight lines in random directions until they collide with each other or the container wall.
-3. *Elastic Collisions*: All collisions are perfectly elastic, no energy is lost to heat or deformation.
-4. *Small Atomic Radius*: Particles posses very small atomic radius (matching the real size of an Element in nanometers).
+1. **No Intermolecular Forces**: Particles do not attract or repel each other at a distance. They only interact when they physically collide (*Hard-Sphere Model*).
+2. **Random Motion**: Particles move in straight lines in random directions until they collide with each other or the container wall.
+3. **Elastic Collisions**: All collisions are perfectly elastic, no energy is lost to heat or deformation.
+4. **Small Atomic Radius**: Particles posses very small atomic radius (matching the real size of an Element in nanometers).
 
 Note: As the simulation needs to check for particle colliding, I can not assume of *Point Mass*.
 
 ### Simulation Environment
 The simulation models an ideal gas within a bouned 3D cubic container of length $L$. The simulation is initilized with $N$ spherical particles, each having mass $m$ and radius $R$ at $T$ temperature in Kelvin. ($L$, $N$, $m$, $T$, and particle element can be modified in the `main.py` file.)
 #### Initialization Conditions:
-1. *Positions* ($\vec{r}$): Initialized uniformly apart from each other within the domain $(R, L, -R)$ for all dimension $(x, y, z)$. Ensuring no two particles overlapping when spawned.
-2. *Velocityes* ($\vec{v}$): Initialized with random components in $(x, y, z)$ but all components add up to magnitude of root mean square speed ($v_{rms}$). Directly correlate Temperature ($T$) with the simulation's environment.
-3. *Discrete Time Steps* ($dt$): Set as $0.2$ factor of the time interval particle takes to move with displacement equals to its radius. Preventing unexpected particle tunnelling from excessive initial $dt$.
+1. **Positions** ($\vec{r}$): Initialized uniformly apart from each other within the domain $(R, L, -R)$ for all dimension $(x, y, z)$. Ensuring no two particles overlapping when spawned.
+2. **Velocityes** ($\vec{v}$): Initialized with random components in $(x, y, z)$ but all components add up to magnitude of root mean square speed ($v_{rms}$). Directly correlate Temperature ($T$) with the simulation's environment.
+3. **Discrete Time Steps** ($dt$): Set as $0.2$ factor of the time interval particle takes to move with displacement equals to its radius. Preventing unexpected particle tunnelling from excessive initial $dt$.
+
+### Data Structure & Vectorization
+The system states are represented using **NumPy $N$-dimension arrays**. All mathematical operations are represented as vectorized linear algebra operation as well.
+1. **Position Matrix ($\mathbf{R}$)**: An $(N \times 3)$ array where the $i$-th row represents the coordinates of particle $i$.
+
+$$
+\mathbf{R}_{N \times 3} = 
+\begin{bmatrix} 
+\vdots & \vdots & \vdots \\
+r_{i,x} & r_{i,y} & r_{i,z} \\
+\vdots & \vdots & \vdots 
+\end{bmatrix} 
+$$
+
+$$
+\vec{r}_{i} = r_{i, x} \hat{i} + r_{i, y} \hat{j} + r_{i, z} \hat{k}
+$$
+
+2. **Velocity Matrix ($\mathbf{V}$)**: An $(N \times 3)$ array where the $i$-th row represents the velocity of particle $i$.
+
+$$
+\mathbf{V}_{N \times 3} = 
+\begin{bmatrix} 
+\vdots & \vdots & \vdots \\
+v_{i,x} & v_{i,y} & v_{i,z} \\
+\vdots & \vdots & \vdots 
+\end{bmatrix} 
+$$
+
+$$
+\vec{v}_{i} = v_{i, x} \hat{i} + v_{i, y} \hat{j} + v_{i, z} \hat{k}
+$$
 
 ### Kinematics Simulation
 The simulation evolves over discrete time steps $dt$. With each step $dt$, particle position are updated using Forward Euler integration:
