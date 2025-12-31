@@ -16,7 +16,7 @@ This project explores the numerical reconstruction of the Maxwell-Boltzmann prob
 
 
 
-## Tabel of Contents
+## Table of Contents
 1. [Project Overview](#numerical-reconstruction-of-the-maxwell-boltzmann-distribution-via-3D-monatomic-hard-sphere-simulation)
 2. [Theoretical Background](#theoretical-background)
 3. [Methodology](#methodology)
