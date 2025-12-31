@@ -154,7 +154,7 @@ Utilizing `scipy.optimize.curve.fit`, the library apply the *Levenberg-Marquardt
 ### Visualization and Output
 #### Statistical Output (Utilizing `Matplotlib`)
 The scripts provide 6 options for the statistical visualization
-```bash
+```text
 [1] Visualizing Initial PDF Compared to Theoretical PDF
 [2] Visualize Dynamic Simulated PDF Histogram
 [3] Visualize Dynamic Simulated PDF (KDE curve)
@@ -168,9 +168,9 @@ Every mode of visualization provided theoretical reference curve.
 * Option [4], [5] conclude the simulation and sampling with: Raw Data Point marked as (`x`), Velocity Histogram, Curve Fitting Overlay, Residual plots. Mean Squared Error (MSE), $A, B$ value and Percentage error for [4] are also outputed in the terminal.
 
 #### Real-Time 3D Rendering (Utilizing `VPython`)
-Each element in the position Array ($\mathbf{R}$) are mapped with spherical model at each step time interval $dt$. As time ($dt$) evoles, the postion of each molecule shifts along the calculation of the simulation.
+Each element in the position Array ($\mathbf{R}$) is mapped with spherical model at each step time interval $dt$. As time ($dt$) evoles, the postion of each molecule shifts along the calculation of the simulation.
 
-Additionally, speed of each molecules is mapped into spectrum colors. With each color represent current speed of that element $\lVert v \rVert (t)$, ranging from highest $v_{min}$ to $v_{max}$, red to violet.
+Additionally, speed of each molecules is mapped into spectrum colors. With each color represent current speed of that element $\lVert v(t) \rVert$, ranging from highest $v_{min}$ to $v_{max}$, red to violet.
 
 
 
