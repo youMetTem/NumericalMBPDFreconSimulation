@@ -1,5 +1,5 @@
 # Numerical Reconstruction of the Maxwell-Boltzmann Distribution via 3D Monatomic Hard-Sphere Simulation
-This project explores the numerical reconstruction of the Maxwell-Boltzmann probability density function based on data generated from a 3D hard-sphere simulation system. Additionally, the study evaluates the accuracy of reconstruction by comparing cubic spline interpolation and standard non-linear curve fitting (scipy.optimize) against the theoretical curve.
+This project explores the numerical reconstruction of the Maxwell-Boltzmann probability density function based on data generated from a 3D hard-sphere simulation system. Additionally, the study evaluates the accuracy of reconstruction by comparing cubic spline interpolation and standard non-linear curve fitting (`scipy.optimize`) against the theoretical curve.
 <table>
   <tr>
     <td width="40%" align="center" valign="middle">
@@ -40,8 +40,13 @@ Conventional analytical approaches to derive the aforementioned function rely on
 
 Beyond simple verification, this study aims to evaluate the accuracy of statistical reconstruction techniques. Specifically, *Cubic Spline Interpolation* against *Non-Linear Curve Fitting* (via `scipy.optimize`) to determine which method better reconstruct the theoretical distribution from discrete, stochastic simulation data.
 
-### Physical Assumptions & Model
-To simulate this physically, I model
+### Physical Assumptions
+I treat the system as an "Ideal Gas". This requires specific constraints on how to particles behave:
+1. No Intermolecular Forces: Particles do not attract or repel each other at a distance. They only interact when they physically collide (Hard-Sphere Model).
+2. Random Motion: Particles move in straight lines in random directions until they collide with each other or the container wall.
+3. Elastic Collisions: All collisions are perfectly elastic, no energy is lost to heat or deformation.
+
+Note: As the simulation needs to check for particle colliding, I can not assume for *Point Mass* but assume for very small atomic radius (matching the real size in nanometers).
 
 
 
