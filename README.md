@@ -1,5 +1,5 @@
 # Numerical Reconstruction of the Maxwell-Boltzmann Distribution via 3D Monatomic Hard-Sphere Simulation
-This project explores the numerical reconstruction of the Maxwell-Boltzmann probability density function based on data generated from a 3D hard-sphere system. Additionally, the study evaluates the accuracy of reconstruction by comparing cubic spline interpolation and standard non-linear curve fitting (scipy.optimize) against the theoretical curve.
+This project explores the numerical reconstruction of the Maxwell-Boltzmann probability density function based on data generated from a 3D hard-sphere simulation system. Additionally, the study evaluates the accuracy of reconstruction by comparing cubic spline interpolation and standard non-linear curve fitting (scipy.optimize) against the theoretical curve.
 <table>
   <tr>
     <td width="40%" align="center" valign="middle">
@@ -28,7 +28,20 @@ This project explores the numerical reconstruction of the Maxwell-Boltzmann prob
 
 
 ## Theoretical Background
-in process ...
+
+### The Maxwell-Boltzmann Distribution
+For an ideal gas at thermodynamic equilibrium, the speeds of particles are not unitform. Instead, they follow a specific probability distribution known as *Maxwell-Boltzmann PDF*.
+
+The probability density function $f(v)$ for a particle of mass $m$ at temperature $T$ is given by:
+
+$$f(v)=4\pi \left( \frac{m}{2\pi k_B T} \right)^{3/2} v^2 \exp\left(-\frac{mv^2}{2k_B T}\right)$$
+
+Conventional analytical approaches to derive the aforementioned function rely on frameworks from statistical mechanics or entropy maximization. The primary objective of this project is to numerically reconstruct the *Maxwell-Boltzmann probability density function (PDF)* from the data collected from a simulated 3D thermodynamic system using a hard-sphere particle model.
+
+Beyond simple verification, this study aims to evaluate the accuracy of statistical reconstruction techniques. Specifically, *Cubic Spline Interpolation* against *Non-Linear Curve Fitting* (via `scipy.optimize`) to determine which method better reconstruct the theoretical distribution from discrete, stochastic simulation data.
+
+### Physical Assumptions & Model
+To simulate this physically, I model
 
 
 
