@@ -40,18 +40,27 @@ Conventional analytical approaches to derive the aforementioned function rely on
 
 Beyond simple verification, this study aims to evaluate the accuracy of statistical reconstruction techniques. Specifically, *Cubic Spline Interpolation* against *Non-Linear Curve Fitting* (via `scipy.optimize`) to determine which method better reconstruct the theoretical distribution from discrete, stochastic simulation data.
 
-### Physical Assumptions
-I treat the system as an "Ideal Gas". This requires specific constraints on how to particles behave:
-1. No Intermolecular Forces: Particles do not attract or repel each other at a distance. They only interact when they physically collide (Hard-Sphere Model).
-2. Random Motion: Particles move in straight lines in random directions until they collide with each other or the container wall.
-3. Elastic Collisions: All collisions are perfectly elastic, no energy is lost to heat or deformation.
-
-Note: As the simulation needs to check for particle colliding, I can not assume for *Point Mass* but assume for very small atomic radius (matching the real size in nanometers).
-
 
 
 ## Methodology
-in process ...
+This project consists of two phases: the Kinematic Simulation, which generate raw physical data, and the Numerical Reconstruction, which analyzes the statistical properties and implement *Cubic Spline Interpolation* and *Non-Linear Curve Fitting* of the system.
+
+### Physical Assumptions
+I treat the system as an *Ideal Gas*. The require specific constraints on how particles behave:
+1. *No Intermolecular Forces*: Particles do not attract or repel each other at a distance. They only interact when they physically collide (*Hard-Sphere Model*).
+2. *Random Motion*: Particles move in straight lines in random directions until they collide with each other or the container wall.
+3. *Elastic Collisions*: All collisions are perfectly elastic, no energy is lost to heat or deformation.
+4. *Small Atomic Radius*: Particles posses very small atomic radius (matching the real size of an Element in nanometers).
+
+Note: As the simulation needs to check for particle colliding, I can not assume of *Point Mass*.
+
+### Simulation Environment
+The simulation models an ideal gas within a bouned 3D cubic container of length $L$. The simulation is initilized with $N$ spherical particles, each having mass $m$ and radius $R$ at $T$ temperature in Kelvin. ($L$, $N$, $m$, $T$, and particle element can be modified in the `main.py` file.)
+#### Initialization Conditions:
+1. *Positions* ($\vec{r}$): Initialized uniformly apart from each other within the domain $(R, L, -R)$ for all dimension $(x, y, z)$. Ensuring no two particles overlapping when spawned.
+2. *Velocityes* ($\vec{v}$): Initialized with random components in $(x, y, z)$ but all components add up to magnitude of root mean square speed ($v_{rms}$). Directly correlate Temperature ($T$) with the simulation's environment.
+3. *Discrete Time Steps* ($dt$): Set as $0.2$ factor of the time interval particle takes to move with displacement equals to its radius. Preventing unexpected particle tunnelling from excessive initial $dt$.
+
 
 
 
