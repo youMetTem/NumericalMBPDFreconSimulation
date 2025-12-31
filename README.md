@@ -58,7 +58,7 @@ Note: As the simulation needs to check for particle colliding, I can not assume 
 The simulation models an ideal gas within a bouned 3D cubic container of length $L$. The simulation is initilized with $N$ spherical particles, each having mass $m$ and radius $R$ at $T$ temperature in Kelvin. ($L$, $N$, $m$, $T$, and particle element can be modified in the `main.py` file.)
 #### Initialization Conditions:
 1. **Positions** ($\vec{r}$): Initialized uniformly apart from each other within the domain $(R, L, -R)$ for all dimension $(x, y, z)$. Ensuring no two particles overlapping when spawned.
-2. **Velocityes** ($\vec{v}$): Initialized with random components in $(x, y, z)$ but all components add up to magnitude of root mean square speed ($v_{rms}$). Directly correlate Temperature ($T$) with the simulation's environment.
+2. **Velocities** ($\vec{v}$): Initialized with random components in $(x, y, z)$ but all components add up to magnitude of root mean square speed ($v_{rms}$). Directly correlate Temperature ($T$) with the simulation's environment.
 3. **Discrete Time Steps** ($dt$): Set as $0.2$ factor of the time interval particle takes to move with displacement equals to its radius. Preventing unexpected particle tunnelling from excessive initial $dt$.
 
 ### Data Structure & Vectorization
@@ -116,6 +116,41 @@ $$\vec{v}_{1, f} = \vec{v}_{1, i} - \frac{(\vec{v}_{1, i}-\vec{v}_{2, i}) \cdot 
 $$\vec{v}_{2, f} = \vec{v}_{2, i} - \frac{(\vec{v}_{2, i}-\vec{v}_{1, i}) \cdot (\vec{r}_{2, i}-\vec{r}_{1, i})}{\lVert \vec{r}_{2, i}-\vec{r}_{1, i} \rVert^2} (\vec{r}_{2, i}-\vec{r}_{1, i})$$
 
 The vector form of velocites ensures that the changes in momentum is directly and only applied along the normal vector connecting the particles pair center.
+
+### Numerical Reconstruction
+To reconstruct PDF, the simulation are run for a set amount of iterations until the system reaches its equilibrium and all transients are eliminated, then data are collected for set amount of samples. Later, all the data are stacked and combined into single large array, velocity magnitudes are then extracted and binned into a histogram. Two separate numerical Methods are then applied to this data set.
+#### Method 1: Cubic Spline Interpolation
+To reconstruct the PDF without assuming the underlying physical with gaussian distribution or any type of regressions, I utilize Cubic Spline interpolation. Using the histogram bin midpoints as data set of $(x_i, y_i)$, the algorithm constructs a piecewise function $S_{i}(x)$ for each interval $[x_{i}, x_{i+1}]$:
+
+$$
+S_{i}(x) = a_i + b_i (x-x_i) + c_i (x-x_i)^2 + d_i (x-x_i)^3
+$$
+
+$$
+S(x) = 
+\begin{cases} 
+S_i(x) & x \in [x_i, x_{i+1}] \\
+S_{i+1}(x) & x \in [x_{i+1}, x_{i+2}] \\
+S_{i+2}(x) & x \in [x_{i+2}, x_{x+3}] \\
+\vdots & \vdots \\
+S_{n-1}(x) & x \in [x_{n-1}, x_n]
+\end{cases}
+$$
+
+
+The coefficients are determined by applying countinuity constraints for the function, its first and second derivative at every datapoints.
+
+#### Method 2: Non-Linear Curve Fitting (Levenberg-Marquardt)
+By observation of the histogram, we could hypothesize the target model function $g(v, A, B)$ as:
+
+$$
+g(v) = Av^2exp(-Bv^2)
+$$
+
+Utilizing `scipy.optimize.curve.fit`, the library apply the *Levenberg-Marquardt Algorithm* to minimizes the sum of square residuals (SSR) between the model and the histogram datapoints to find the optimal parameters $A$ and $B$.
+
+###
+
 
 
 ## Results
