@@ -43,7 +43,7 @@ Beyond simple verification, this study aims to evaluate the accuracy of statisti
 
 
 ## Methodology
-This project consists of two phases: the Kinematic Simulation, which generate raw physical data, and the Numerical Reconstruction, which analyzes the statistical properties and implement *Cubic Spline Interpolation* and *Non-Linear Curve Fitting* of the system.
+This project consists of 2 phases: the Kinematic Simulation, which generate raw physical data, and the Numerical Reconstruction, which analyzes the statistical properties and implement *Cubic Spline Interpolation* and *Non-Linear Curve Fitting* of the system (`main.py`). Additionally, 3D particle simulation visualizer is also provided (`vis3D.py`)
 
 ### Physical Assumptions
 I treat the system as an *Ideal Gas*. The require specific constraints on how particles behave:
@@ -61,7 +61,29 @@ The simulation models an ideal gas within a bouned 3D cubic container of length 
 2. *Velocityes* ($\vec{v}$): Initialized with random components in $(x, y, z)$ but all components add up to magnitude of root mean square speed ($v_{rms}$). Directly correlate Temperature ($T$) with the simulation's environment.
 3. *Discrete Time Steps* ($dt$): Set as $0.2$ factor of the time interval particle takes to move with displacement equals to its radius. Preventing unexpected particle tunnelling from excessive initial $dt$.
 
+### Kinematics Simulation
+The simulation evolves over discrete time steps $dt$. With each step $dt$, particle position are updated using Forward Euler integration:
 
+$$\vec{r}(t+dt) = \vec{r}(t) + \vec{v}(t)dt$$
+
+### Collision Handling Mechanisms
+Collision observed in this simulation consists of 2 distinct type: *Wall-Particle Collisions* and *Particle-Particle Collisions*. The simulation handles these interaction differently.
+#### Wall-particle Collisions
+The container walls are treated as infinite mass barriers with perfect elasticity. If particle component $r_{i}$ reaches or exceeds the boundary limits $L$, the velocity component perpendicular to the wall will be inverted:
+
+$$\vec{v}_{\perp, new} = -\vec{v}_{\perp, old}$$
+
+#### Particle-Particle Collisions
+At every step of evolving $dt$, the scripts checks for overlapping particle pairs. By finding Euclidean distance between each particles pair $i$, $j$ and check if they are below particle's diameter:
+
+$$\lVert \vec{r}_{i}-\vec{r}_{j} \rVert \le 2R$$
+
+Once the collision event is triggered, the velocities are updated based on the convervation of linear momentum and kinetic energy. For two particles of equal mass, the post-collision state $v_{1, f}$, $v_{2, f}$ are calculated using vector projection along the line of impact: 
+
+$$\vec{v}_{1, f} = \vec{v}_{1, i} - \frac{(\vec{v}_{1, i}-\vec{v}_{2, i}) \cdot (\vec{r}_{1, i}-\vec{r}_{2, i})}{\lVert \vec{r}_{1, i}-\vec{r}_{2, i} \rVert^2} (\vec{r}_{1, i}-\vec{r}_{2, i})$$
+$$\vec{v}_{2, f} = \vec{v}_{2, i} - \frac{(\vec{v}_{2, i}-\vec{v}_{1, i}) \cdot (\vec{r}_{2, i}-\vec{r}_{1, i})}{\lVert \vec{r}_{2, i}-\vec{r}_{1, i} \rVert^2} (\vec{r}_{2, i}-\vec{r}_{1, i})$$
+
+The vector form of velocites ensures that the changes in momentum is directly and only applied along the normal vector connecting the particles pair center.
 
 
 ## Results
