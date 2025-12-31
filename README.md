@@ -139,6 +139,7 @@ $$
 
 
 The coefficients ($a_i, b_i, c_i, d_i$) are determined by applying countinuity constraints for the function, its first and second derivative at every datapoints.
+
 Additionally, due to a known limitation of polynomial iterpolation method, including cubic spline, is **Unbounded Extrapolation**. While the spline accurately models the distribution within the sampled velocity range $[v_{min}, v_{max}]$, the polynomials inherently diverge towards $\pm \infty$ outside this domain. To counter against this issue, I resolve it by setting any prediction data outside the range of $[v_{min}, v_{max}]$ to 0 and remove any negative result probability.
 
 #### Method 2: Non-Linear Curve Fitting (Levenberg-Marquardt)
@@ -151,7 +152,25 @@ $$
 Utilizing `scipy.optimize.curve.fit`, the library apply the *Levenberg-Marquardt Algorithm* to minimizes the sum of square residuals (SSR) between the model and the histogram datapoints to find the optimal parameters $A$ and $B$.
 
 ### Visualization and Output
+#### Statistical Output (Utilizing `Matplotlib`)
+The scripts provide 6 options for the statistical visualization
+```bash
+[1] Visualizing Initial PDF Compared to Theoretical PDF
+[2] Visualize Dynamic Simulated PDF Histogram
+[3] Visualize Dynamic Simulated PDF (KDE curve)
+[4] Visualize Estimated Function From Hypothesized Generic Function
+[5] Visualize Histogram's Bin Midpoint Spline Interpolated Curve
+```
+Every mode of visualization provided theoretical reference curve.
+* Option [1] plot the initial speed distribution PDF before the simulation starts
+* Option [2] illustrate realtime speed distribution PDF as the system converges to equilibrium in Histogram
+* Option [3] same as option [2] but represent in form of gaussian KDE estimated curve
+* Option [4], [5] conclude the simulation and sampling with: Raw Data Point marked as (`x`), Velocity Histogram, Curve Fitting Overlay, Residual plots. Mean Squared Error (MSE), $A, B$ value and Percentage error for [4] are also outputed in the terminal.
 
+#### Real-Time 3D Rendering (Utilizing `VPython`)
+Each element in the position Array ($\mathbf{R}$) are mapped with spherical model at each step time interval $dt$. As time ($dt$) evoles, the postion of each molecule shifts along the calculation of the simulation.
+
+Additionally, speed of each molecules is mapped into spectrum colors. With each color represent current speed of that element $\lVert v \rVert (t)$, ranging from highest $v_{min}$ to $v_{max}$, red to violet.
 
 
 
