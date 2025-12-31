@@ -234,12 +234,12 @@ Both visualization closely capture the characteristics of the theoretical distri
     <td width="50%" align="center" valign="middle">
       <img src="assets/forResults/03_dynamicPDFKDESimulation.gif" width="100%" alt= "dynamicPDFKDESimulation" />
       <br />
-      <em>YT link</em>
+      <a href="https://youtu.be/24GUUjp-Bbw">Better Quality Video</a>
     </td>
     <td width="50%" align="center" valign="middle">
       <img src="assets/forResults/02_dynamicPDFHistogramSimulation.gif" width="100%" alt = "dynamicPDFHistogramSimulation" />
       <br />
-      <em>YT link</em>
+      <a href="https://youtu.be/ZUTJYeyOlvI">Better Quality Video</a>
     </td>
   </tr>
 </table>
@@ -266,7 +266,7 @@ Notable detail worth mentioning in addition to the quantitative accuracy part:
     <td align="center">
       <img src="assets/forResults/06_3DParticlesSimulation.gif" width="60%" alt="Dynamic 3D Simulation Visualization of particles" style="object-fit: cover;">
       <br />
-      <em>YT link</em>
+      <a href="https://youtu.be/AB35dECbc-U">Better Quality Video</a>
     </td>
   </tr>
 </table>
