@@ -138,7 +138,8 @@ S_{n-1}(x) & x \in [x_{n-1}, x_n]
 $$
 
 
-The coefficients are determined by applying countinuity constraints for the function, its first and second derivative at every datapoints.
+The coefficients ($a_i, b_i, c_i, d_i$) are determined by applying countinuity constraints for the function, its first and second derivative at every datapoints.
+Additionally, due to a known limitation of polynomial iterpolation method, including cubic spline, is **Unbounded Extrapolation**. While the spline accurately models the distribution within the sampled velocity range $[v_{min}, v_{max}]$, the polynomials inherently diverge towards $\pm \infty$ outside this domain. To counter against this issue, I resolve it by setting any prediction data outside the range of $[v_{min}, v_{max}]$ to 0 and remove any negative result probability.
 
 #### Method 2: Non-Linear Curve Fitting (Levenberg-Marquardt)
 By observation of the histogram, we could hypothesize the target model function $g(v, A, B)$ as:
@@ -149,7 +150,8 @@ $$
 
 Utilizing `scipy.optimize.curve.fit`, the library apply the *Levenberg-Marquardt Algorithm* to minimizes the sum of square residuals (SSR) between the model and the histogram datapoints to find the optimal parameters $A$ and $B$.
 
-###
+### Visualization and Output
+
 
 
 
