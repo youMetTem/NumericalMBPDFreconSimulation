@@ -110,8 +110,30 @@ At every step of evolving $dt$, the scripts checks for overlapping particle pair
 
 $$\lVert \vec{r}_{i}-\vec{r}_{j} \rVert \le 2R$$
 
-Once the collision event is triggered, the velocities are updated based on the convervation of linear momentum and kinetic energy. For two particles of equal mass, the post-collision state $v_{1, f}$, $v_{2, f}$ are calculated using vector projection along the line of impact: 
+Once the collision event is triggered, the velocities are updated based on the convervation of linear momentum and kinetic energy. For two particles of equal mass, the post-collision velocities are calculated using vector projection along the line of impact.
+* Defining Collision Axis:
 
+$$ \hat{c} = \frac{\vec{r}_1-\vec{r}_2}{\lVert \vec{r}_1-\vec{r}_2 \rVert} $$
+* Decomposing Velocity Vector. Split $\vec{v}_i$ into two perpendicular components, one parallels to the collision axis, one perpendiculars. The perpendicular velocities will remain constant from Newton's Second Law:
+
+$$ \vec{v}_i = \vec{v}_{i, \parallel} + \vec{v}_{i, \perp} $$
+$$ \vec{v}_{i, \parallel} = (\vec{v}_i \cdot \hat{c})\hat{c} $$
+
+* Applying 1D conservation laws of Energy and Momentum along the collision axis. As $m_1 = m_2$, the general solution is:
+
+$$ \vec{v}_{1, \parallel, f} = \vec{v}_{2, \parallel, i} \\, and \\, \vec{v}_{2, \parallel, f} = \vec{v}_{1, \parallel, i} $$
+
+* Reconstruct Final Velocity Vector:
+
+$$ \vec{v}_{1, f} = \vec{v}_{1, \perp, i} + \vec{v}_{1, \parallel, f} $$
+$$ \vec{v}_{1, f} = (\vec{v}_{1, i} - \vec{v}_{1, \parallel, i})+\vec{v}_{2, \parallel} $$
+$$ \vec{v}_{1, f} = \vec{v}_{1, i} - (\vec{v}_{1, \parallel, i} - \vec{v}_{2, \parallel}) $$
+
+* Substitute Unit Vectors:
+
+$$ \vec{v}_{1, f} = \vec{v}_{1, i} - ((\vec{v}_{1, i} \cdot \hat{c})\hat{c} - (\vec{v}_{2, i} \cdot \hat{c})\hat{c}) $$
+$$ \vec{v}_{1, f} = (\vec{v}_{1, i} - ((\vec{v}_{1, i} - \vec{v}_{2, i}) \cdot \hat{c})) \hat{c} $$
+* Substitute $\hat{c}$ back, and repeat for $\vec{v}_{2, f}$:
 $$\vec{v}_{1, f} = \vec{v}_{1, i} - \frac{(\vec{v}_{1, i}-\vec{v}_{2, i}) \cdot (\vec{r}_{1, i}-\vec{r}_{2, i})}{\lVert \vec{r}_{1, i}-\vec{r}_{2, i} \rVert^2} (\vec{r}_{1, i}-\vec{r}_{2, i})$$
 $$\vec{v}_{2, f} = \vec{v}_{2, i} - \frac{(\vec{v}_{2, i}-\vec{v}_{1, i}) \cdot (\vec{r}_{2, i}-\vec{r}_{1, i})}{\lVert \vec{r}_{2, i}-\vec{r}_{1, i} \rVert^2} (\vec{r}_{2, i}-\vec{r}_{1, i})$$
 
