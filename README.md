@@ -220,7 +220,16 @@ It is noticeable that the initial distribution generated from *Mersenne Twister*
 `insert initial pic`
 #### Realtime Speed Distribution:
 Both visualization closely capture the characteristics of the theoretical distribution, with only minor fluctuations arising from limited sample sizes and the use of an inappropriate Gaussian KDE regression.
-`insert two gif of realtime simulation`
+<table>
+  <tr>
+    <td width="50%" align="center" valign="middle">
+      <img src="assets/forResults/03_dynamicPDFKDESimulation.gif" width="100%" />
+    </td>
+    <td width="50%" align="center" valign="middle">
+      <img src="assets/forResults/02_dynamicPDFHistogramSimulation.gif" width="100%" />
+    </td>
+  </tr>
+</table>
 #### Finalized Reconstructed PDF:
 Notable detail worth mentioning in addition to the quantitative accuracy part:
 * Cubic Spline Residuals exhibiting tiny cone shape sinuiodal oscillation: This is most likely cause by approximating a transcendental function of exponential decay with piecewise polynomial, utlizing inappropriate interpolation method, regression model is the cause of this problem. It is also important to note that the max residual error is less than $2.5 \times 10^{-6}$
