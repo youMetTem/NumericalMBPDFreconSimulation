@@ -1,5 +1,5 @@
 # Numerical Reconstruction of the Maxwell-Boltzmann Distribution via 3D Monatomic Hard-Sphere Simulation
-This project explores the numerical reconstruction of the Maxwell-Boltzmann probability density function based on data generated from a 3D hard-sphere simulation system. Additionally, the study evaluates the accuracy of reconstruction by comparing cubic spline interpolation and standard non-linear curve fitting (`scipy.optimize`) against the theoretical curve.
+This project explores the numerical reconstruction of the Maxwell-Boltzmann probability density function based on data generated from a 3D hard-sphere simulation system. Additionally, the study evaluates the accuracy of reconstruction by comparing cubic spline interpolation and standard non-linear curve fitting (`scipy.optimize`, Levenberg-Marquardt) against the theoretical curve.
 <table>
   <tr>
     <td width="40%" align="center" valign="middle">
@@ -21,9 +21,10 @@ This project explores the numerical reconstruction of the Maxwell-Boltzmann prob
 2. [Theoretical Background](#theoretical-background)
 3. [Methodology](#methodology)
 4. [Results](#results)
-5. [Installation & Usage](#installation--usage)
-6. [Acknowledgements & Resources](#acknowledgements--resources)
-7. [AI Use Declaration](#ai-use-declaration)
+5. [Conclusion](#conclusion)
+6. [Installation & Usage](#installation--usage)
+7. [Acknowledgements & Resources](#acknowledgements--resources)
+8. [AI Use Declaration](#ai-use-declaration)
 
 
 
@@ -58,7 +59,7 @@ Note: As the simulation needs to check for particle colliding, I can not assume 
 The simulation models an ideal gas within a bouned 3D cubic container of length $L$. The simulation is initilized with $N$ spherical particles, each having mass $m$ and radius $R$ at $T$ temperature in Kelvin. ($L$, $N$, $m$, $T$, and particle element can be modified in the `main.py` file.)
 #### Initialization Conditions:
 1. **Positions** ($\vec{r}$): Initialized uniformly apart from each other within the domain $(R, L, -R)$ for all dimension $(x, y, z)$. Ensuring no two particles overlapping when spawned.
-2. **Velocities** ($\vec{v}$): Initialized with random components in $(x, y, z)$ but all components add up to magnitude of root mean square speed ($v_{rms}$). Directly correlate Temperature ($T$) with the simulation's environment.
+2. **Velocities** ($\vec{v}$): Initialized with random components in $(x, y, z)$ but root mean square ($v_{rms}$) of all particles are scaled to theoretical value. Directly correlate Temperature (%T%) with the simulation's environment.
 3. **Discrete Time Steps** ($dt$): Set as $0.2$ factor of the time interval particle takes to move with displacement equals to its radius. Preventing unexpected particle tunnelling from excessive initial $dt$.
 
 ### Data Structure & Vectorization
@@ -200,7 +201,35 @@ Additionally, speed of each molecules is mapped into spectrum colors. With each 
 
 
 ## Results
-in process ...
+
+### Quantitative Accuracy
+The accuracy of the simulation is evidenced by the negligibly low error magin observed across 10,000 sampling iterations. Provided with several numerical key metrics:
+* **Max Residual Error:**
+  * Cubic Spline Interpolation: $< 2.5 \times 10^{-6}$
+  * Non-Linear Curve Fitting: $< 1 \times 10^{-6}$
+* **Mean Squared Error (Mse):**
+  * Cubic Spline Interpolation:: $1.29 \times 10^{-11}$
+  * Non-Linear Curve Fitting: $1.38 \times 10^{-13}$
+* **Parameter Accuracy (Curve Fit):**
+  * Parameter A Percentage Error: $0.207 %$
+  * Parameter B Percentage Error: $0.078 %$
+
+### Visual Analysis
+#### Initial Speed Distribution immediatly after spawning particles: It is noticeable that the initial distribution generated from *Mersenne Twister* has no correlation with the theoretical distribution at all.
+`insert initial pic`
+#### Realtime Speed Distribution: Both visualization closely capture the characteristics of the theoretical distribution, with only minor fluctuations arising from limited sample sizes and the use of an inappropriate Gaussian KDE regression.
+`insert two gif of realtime simulation`
+#### Finalized Reconstructed PDF: Notable detail worth mentioning in addition to the quantitative accuracy part:
+* Cubic Spline Residuals exhibiting tiny cone shape sinuiodal oscillation: This is most likely cause by approximating a transcendental function of exponential decay with piecewise polynomial, utlizing inappropriate interpolation method, regression model is the cause of this problem. It is also important to note that the max residual error is less than $2.5 \times 10^{-6}$
+* Curve Fitting Residuals' Systematic Drift: The residual plot for the Levenberg-Marquardt curve fit does not display random scatter but a noticeable pattern corresponds to the difference between two Maxwell-Boltzmann PDF with infinitesimally different temperature parameters, this is most likely due to finite bin width limitations rather than the physical inaccuracy in the simulation.
+`insert two pic of the end result`
+* Dynamic 3D Simulation Visualization of particles:
+`insert gif of 3D Sim`
+
+
+## Conclusion
+The hard-sphere simulation **successfully** reconstructed the Maxwell–Boltzmann distribution using both cubic spline interpolation and nonlinear curve fitting (Levenberg–Marquardt), with negligible error relative to the theoretical distribution. By bridging three-dimensional dynamic hard-sphere simulations with statistical analysis, the model demonstrates how thermodynamic equilibrium spontaneously emerges from chaotic, perfectly elastic collisions. This simulation therefore serves as a computational proof of concept for the statistical mechanics underlying the ideal gas law.
+
 
 
 
