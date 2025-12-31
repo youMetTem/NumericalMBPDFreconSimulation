@@ -3,13 +3,13 @@ This project explores the numerical reconstruction of the Maxwell-Boltzmann prob
 <table>
   <tr>
     <td width="40%" align="center" valign="middle">
-      <img src="assets/forProjectOverview/03_dynamicPDFKDESimulation.gif" width="100%" />
+      <img src="assets/forProjectOverview/03_dynamicPDFKDESimulation.gif" width="100%" alt = "dynamicPDFKDESimulation"/>
     </td>
     <td width="20%" align="center" valign="middle">
-      <img src="assets/forProjectOverview/06_3DParticlesSimulation.gif" width="100%" />
+      <img src="assets/forProjectOverview/06_3DParticlesSimulation.gif" width="100%" alt = "3DParticlesSimulation"/>
     </td>
     <td width="40%" align="center" valign="middle">
-      <img src="assets/forProjectOverview/04_GenericFunctionCurveFitted.png" width="100%" />
+      <img src="assets/forProjectOverview/04_GenericFunctionCurveFitted.png" width="100%" alt = "GenericFunctionCurveFitted"/>
     </td>
   </tr>
 </table>
@@ -217,26 +217,60 @@ The accuracy of the simulation is evidenced by the negligibly low error magin ob
 ### Visual Analysis
 #### Initial Speed Distribution immediatly after spawning particles:
 It is noticeable that the initial distribution generated from *Mersenne Twister* has no correlation with the theoretical distribution at all.
-`insert initial pic`
+<div align = "center">
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/forResults/01_initialSpeedDistribution.png" width="500px" alt="Initial Speed Distribution" style="object-fit: cover;">
+    </td>
+  </tr>
+</table>
+</div>
+
 #### Realtime Speed Distribution:
 Both visualization closely capture the characteristics of the theoretical distribution, with only minor fluctuations arising from limited sample sizes and the use of an inappropriate Gaussian KDE regression.
 <table>
   <tr>
     <td width="50%" align="center" valign="middle">
-      <img src="assets/forResults/03_dynamicPDFKDESimulation.gif" width="100%" />
+      <img src="assets/forResults/03_dynamicPDFKDESimulation.gif" width="100%" alt= "dynamicPDFKDESimulation" />
+      <br />
+      <em>YT link</em>
     </td>
     <td width="50%" align="center" valign="middle">
-      <img src="assets/forResults/02_dynamicPDFHistogramSimulation.gif" width="100%" />
+      <img src="assets/forResults/02_dynamicPDFHistogramSimulation.gif" width="100%" alt = "dynamicPDFHistogramSimulation" />
+      <br />
+      <em>YT link</em>
     </td>
   </tr>
 </table>
+
 #### Finalized Reconstructed PDF:
 Notable detail worth mentioning in addition to the quantitative accuracy part:
 * Cubic Spline Residuals exhibiting tiny cone shape sinuiodal oscillation: This is most likely cause by approximating a transcendental function of exponential decay with piecewise polynomial, utlizing inappropriate interpolation method, regression model is the cause of this problem. It is also important to note that the max residual error is less than $2.5 \times 10^{-6}$
 * Curve Fitting Residuals' Systematic Drift: The residual plot for the Levenberg-Marquardt curve fit does not display random scatter but a noticeable pattern corresponds to the difference between two Maxwell-Boltzmann PDF with infinitesimally different temperature parameters, this is most likely due to finite bin width limitations rather than the physical inaccuracy in the simulation.
-`insert two pic of the end result`
-* Dynamic 3D Simulation Visualization of particles:
-`insert gif of 3D Sim`
+<table>
+  <tr>
+    <td width="50%" align="center" valign="middle">
+      <img src="assets/forResults/05_HistogramsBinMidpointSplineInterpolatedCurve.png" width="800px alt = "Cubic Spline Interpolation PDF Curve" />
+    </td>
+    <td width="50%" align="center" valign="middle">
+      <img src="assets/forResults/04_GenericFunctionCurveFitted.png" width="800px alt = "Levenberg-Marquardt Optimize Fit PDF Curve" />
+    </td>
+  </tr>
+</table>
+
+#### Dynamic 3D Simulation Visualization of particles:
+<div align = "center">
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/forResults/06_3DParticlesSimulation.gif" width="60%" alt="Dynamic 3D Simulation Visualization of particles" style="object-fit: cover;">
+      <br />
+      <em>YT link</em>
+    </td>
+  </tr>
+</table>
+</div>
 
 
 ## Conclusion
