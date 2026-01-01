@@ -361,6 +361,6 @@ This project was inspired by serveral excellent resources. Special thanks to the
 ## AI Use Declaration
 This project utilized AI tools to assits in the development process and text refinement.
 * **GitHub Copilot:** Used for code autocompletion, debugging scripts, and snipped generation.
-* **Google Gemini:** Used for drafting the initial structure of this README file, text refinement, and documentation formatting.
+* **Google Gemini:** Used for mundane snipped code generation, drafting the initial structure of this README file, text refinement, and documentation formatting.
 
 All scientific logic, mathematical derivations, and final code implementation were verified and reviewed by me.
