@@ -363,4 +363,4 @@ This project utilized AI tools to assits in the development process and text ref
 * **GitHub Copilot:** Used for code autocompletion, debugging scripts, and snipped generation.
 * **Google Gemini:** Used for mundane snipped code generation, drafting the initial structure of this README file, text refinement, and documentation formatting.
 
-All scientific logic, mathematical derivations, and final code implementation were verified and reviewed by me.
+All scientific logics, mathematical derivations, and final code implementation were verified and reviewed by me.
