@@ -334,7 +334,7 @@ Run the script:
 python3 src/vis3D.py
 ```
 
-A local web server will start, and your default we browser will automatically open a new tab to display the 3D animation.
+A local web server will start, and your default web browser will automatically open a new tab to display the 3D animation.
 
 #### 3D Simulation Controls (MacOS/Trackpad)
 Once the browser window opens, you can navigate the 3D space using these trackpad gestures:
