@@ -59,7 +59,7 @@ Note: As the simulation needs to check for particle colliding, I can not assume 
 The simulation models an ideal gas within a bounded 3D cubic container of length $L$. The simulation is initialized with $N$ spherical particles, each having mass $m$ and radius $R$ at $T$ temperature in Kelvin. ($L$, $N$, $m$, $T$, and particle element can be modified in the `main.py` file.)
 #### Initialization Conditions:
 1. **Positions** ($\vec{r}$): Initialized uniformly apart from each other within the domain $(R, L -R)$ for all dimension $(x, y, z)$. Ensuring no two particles overlapping when spawned.
-2. **Velocities** ($\vec{v}$): Initialized with random components in $(x, y, z)$ but root mean square ($v_{rms}$) of all particles are scaled to theoretical value. Directly correlate Temperature (%T%) with the simulation's environment (Assuming constant total kinetic energy).
+2. **Velocities** ($\vec{v}$): Initialized with random components in $(x, y, z)$ but root mean square ($v_{rms}$) of all particles are scaled to theoretical value. Directly correlate Temperature ($T$) with the simulation's environment (Assuming constant total kinetic energy).
 3. **Discrete Time Steps** ($dt$): Set as $0.2$ factor of the time interval particle takes to move with displacement equals to its radius. Preventing unexpected particle tunnelling from excessive initial $dt$.
 
 ### Data Structure & Vectorization
